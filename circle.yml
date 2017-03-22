@@ -1,16 +1,23 @@
 machine:
   node:
     version: 4.5.0
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 
 dependencies:
   pre:
-    - npm install -g yarn
-    - yarn global dot-json
-  
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
   override:
     - yarn
 
-test: 
+  post:
+    - yarn global add dot-json
+
+  cache_directories:
+  - ~/.cache/yarn
+
+test:
   override:
     - yarn test
 
@@ -19,4 +26,4 @@ deployment:
     tag: /v[0-9]+(\.[0-9]+)*$/
     commands:
       - dot-json package.json version ${CIRCLE_TAG:1}
-      - yarn publish
+      - npm publish

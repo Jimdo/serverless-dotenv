@@ -1,5 +1,5 @@
 {
-  "name": "serverless-dotenv",
+  "name": "@jimdo/serverless-dotenv",
   "description": "serverless plugin to fetch environment variables and write it to a .env file",
   "main": "src/index.js",
   "author": "Henrik Fricke <henrik.fricke@jimdo.com>",
