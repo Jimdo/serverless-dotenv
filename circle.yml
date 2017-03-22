@@ -1,0 +1,22 @@
+machine:
+  node:
+    version: 4.5.0
+
+dependencies:
+  pre:
+    - npm install -g yarn
+    - yarn global dot-json
+  
+  override:
+    - yarn
+
+test: 
+  override:
+    - yarn test
+
+deployment:
+  production:
+    tag: /v[0-9]+(\.[0-9]+)*$/
+    commands:
+      - dot-json package.json version ${CIRCLE_TAG:1}
+      - yarn publish

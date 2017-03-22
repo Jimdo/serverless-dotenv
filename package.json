@@ -1,0 +1,36 @@
+{
+  "name": "serverless-dotenv",
+  "description": "serverless plugin to fetch environment variables and write it to a .env file",
+  "main": "src/index.js",
+  "author": "Henrik Fricke <henrik.fricke@jimdo.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "$(yarn bin)/jest test",
+    "lint": "$(yarn bin)/standard | $(yarn bin)/snazzy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jimdo/serverless-dotenv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Jimdo/serverless-dotenv/issues"
+  },
+  "homepage": "https://github.com/Jimdo/serverless-dotenv",
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "jest": "^19.0.2",
+    "snazzy": "^6.0.0",
+    "standard": "^9.0.2"
+  },
+  "standard": {
+    "envs": [
+      "node",
+      "jest"
+    ],
+    "ignore": [
+      "node_modules/"
+    ]
+  }
+}
