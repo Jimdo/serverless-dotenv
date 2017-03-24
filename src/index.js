@@ -2,74 +2,66 @@
 
 const fs = require('fs')
 const mkdirp = require('mkdirp')
-const util = require('util')
+const path = require('path')
 
-class DotEnvPlugin {
-  constructor (serverless) {
+const collectFunctionEnvVariables = require('./lib/collectFunctionEnvVariables.js')
+const collectOfflineEnvVariables = require('./lib/collectOfflineEnvVariables.js')
+const transformEnvVarsToString = require('./lib/transformEnvVarsToString.js')
+
+class ServerlessDotenvPlugin {
+  constructor (serverless, options) {
     this.serverless = serverless
+    this.options = options
 
     this.commands = {
       dotenv: {
         usage: 'Create .env file with serverless environment variables',
         lifecycleEvents: [
-          'init',
-          'collectGlobalEnvVariables',
-          'collectFunctionEnvVariables',
-          'appendOfflineVariables',
-          'writeDotEnvFile'
+          'dotenvHandler'
         ]
       }
     }
 
     this.hooks = {
-      'before:offline:start:init': () => this.serverless.pluginManager.run(['dotenv']),
-      'dotenv:init': this.init.bind(this),
-      'dotenv:collectGlobalEnvVariables': this.collectGlobalEnvVariables.bind(this),
-      'dotenv:collectFunctionEnvVariables': this.collectFunctionEnvVariables.bind(this),
-      'dotenv:appendOfflineVariables': this.appendOfflineVariables.bind(this),
-      'dotenv:writeDotEnvFile': this.writeDotEnvFile.bind(this)
+      'before:offline:start:init': this.initOfflineHook.bind(this),
+      'before:offline:start': this.initOfflineHook.bind(this),
+      'dotenv:dotenvHandler': this.dotenvHandler.bind(this)
     }
 
     this.environmentVariables = {}
   }
 
-  init () {
+  initOfflineHook () {
+    this.IS_HOOKED = true
+
+    this.serverless.pluginManager.run(['dotenv'])
+  }
+
+  dotenvHandler () {
     this.serverless.cli.log('Creating .env file...')
-  }
 
-  collectGlobalEnvVariables () {
-    this._collectEnvVariables(this.serverless.service.provider.environment)
-  }
+    // collect global environment variables
+    const globalEnvironment = this.serverless.service.provider.environment
+    this.environmentVariables = Object.assign(this.environmentVariables, globalEnvironment)
 
-  collectFunctionEnvVariables () {
-    const functions = this.serverless.service.functions
+    // collect environment variables of functions
+    const functionEnvironment = collectFunctionEnvVariables(this.serverless)
+    this.environmentVariables = Object.assign(this.environmentVariables, functionEnvironment)
 
-    Object.keys(functions).forEach(func => this._collectEnvVariables(functions[func].environment))
-  }
+    // collect environment variables for serverless offline
+    if (this.IS_HOOKED) {
+      const offlineEnvVars = collectOfflineEnvVariables(this.serverless, this.options)
+      this.environmentVariables = Object.assign(this.environmentVariables, offlineEnvVars)
+    }
 
-  appendOfflineVariables () {
-    this.environmentVariables['IS_OFFLINE'] = true
-    this.environmentVariables['API_ENDPOINT'] = 'http://localhost:3000'
-  }
+    // write .env file
+    const dotEnvPath = path.join(this.serverless.config.servicePath, '.serverless')
+    const dotEnvFile = path.join(this.serverless.config.servicePath, '.serverless/.env')
+    const dotEnvDocument = transformEnvVarsToString(this.environmentVariables)
 
-  writeDotEnvFile () {
-    mkdirp.sync('.serverless')
-
-    const path = util.format('%s/.serverless/.env', this.serverless.config.servicePath)
-    let dotEnvDocument = ''
-
-    Object.keys(this.environmentVariables).forEach(envVar => {
-      dotEnvDocument += util.format('%s=%s\r\n', envVar, this.environmentVariables[envVar])
-    })
-
-    fs.writeFileSync(path, dotEnvDocument)
-  }
-
-  _collectEnvVariables (environment) {
-    Object.keys(environment || {}).forEach(envVar => {
-      this.environmentVariables[envVar] = environment[envVar]
-    })
+    mkdirp.sync(dotEnvPath)
+    fs.writeFileSync(dotEnvFile, dotEnvDocument)
   }
 }
 
-module.exports = DotEnvPlugin
+module.exports = ServerlessDotenvPlugin
