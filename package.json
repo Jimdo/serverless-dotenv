@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/Jimdo/serverless-dotenv",
   "dependencies": {
-    "coverage": "^0.0.0",
     "coveralls": "^2.12.0",
     "mkdirp": "^0.5.1"
   },
