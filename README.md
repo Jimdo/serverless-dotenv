@@ -1,4 +1,4 @@
-# Serverless Plugin Dotenv
+# ⚡️ Serverless Plugin Dotenv
 
 [![npm](https://img.shields.io/npm/v/@jimdo/serverless-dotenv.svg)](https://www.npmjs.com/package/@jimdo/serverless-dotenv)
 [![license](https://img.shields.io/github/license/jimdo/serverless-dotenv.svg)](https://github.com/jimdo/serverless-dotenv/blob/master/LICENSE)
