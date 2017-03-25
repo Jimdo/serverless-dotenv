@@ -28,4 +28,3 @@ function collectOfflineEnvVariables (serverless, cliOptions) {
 }
 
 module.exports = collectOfflineEnvVariables
-
