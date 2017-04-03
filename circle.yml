@@ -19,7 +19,9 @@ dependencies:
 
 test:
   override:
-    - yarn test
+    - yarn test:cover
+  post:
+    - yarn coveralls
 
 deployment:
   production:

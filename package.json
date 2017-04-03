@@ -5,8 +5,10 @@
   "author": "Henrik Fricke <henrik.fricke@jimdo.com>",
   "license": "MIT",
   "scripts": {
-    "test": "$(yarn bin)/jest test",
-    "lint": "$(yarn bin)/standard | $(yarn bin)/snazzy"
+    "test": "$(npm bin)/jest test",
+    "test:cover": "$(npm bin)/jest test --coverage",
+    "lint": "$(npm bin)/standard | $(npm bin)/snazzy",
+    "coveralls": "cat ./coverage/lcov.info | $(npm bin)/coveralls"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/Jimdo/serverless-dotenv",
   "dependencies": {
+    "coveralls": "^2.12.0",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
@@ -30,7 +33,8 @@
       "jest"
     ],
     "ignore": [
-      "node_modules/"
+      "node_modules/",
+      "coverage"
     ]
   }
 }
