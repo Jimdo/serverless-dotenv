@@ -19,7 +19,7 @@ Add the npm package to your project:
 $ yarn add @jimdo/serverless-dotenv
 
 # Via npm
-$ npm instal @jimdo/serverless-dotenv --save
+$ npm install @jimdo/serverless-dotenv --save
 ```
 
 Add the plugin to your `serverless.yml`:
