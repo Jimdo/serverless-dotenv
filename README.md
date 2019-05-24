@@ -16,17 +16,17 @@ Add the npm package to your project:
 
 ```bash
 # Via yarn
-$ yarn add @jimdo/serverless-dotenv
+$ yarn add @unly/serverless-env-copy-plugin
 
 # Via npm
-$ npm instal @jimdo/serverless-dotenv --save
+$ npm instal @unly/serverless-env-copy-plugin --save
 ```
 
 Add the plugin to your `serverless.yml`:
 
 ```yaml
 plugins:
-  - '@jimdo/serverless-dotenv'
+  - '@unly/serverless-dotenv'
 ```
 
 That's it! You can now type `serverless dotenv` in your terminal to generate the `.env` file based on your serverless configuration. Alternative you can just start `serverless offline` to generate it.
