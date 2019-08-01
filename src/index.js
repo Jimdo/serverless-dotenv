@@ -18,7 +18,14 @@ class ServerlessDotenvPlugin {
         usage: 'Create .env file with serverless environment variables',
         lifecycleEvents: [
           'dotenvHandler'
-        ]
+        ],
+        options: {
+          path: {
+            usage: 'Specify an output path for the .env file. Defaults to .serverless/',
+            shortcut: 'p',
+            required: false
+          }
+        }
       }
     }
 
@@ -55,8 +62,8 @@ class ServerlessDotenvPlugin {
     }
 
     // write .env file
-    const dotEnvPath = path.join(this.serverless.config.servicePath, '.serverless')
-    const dotEnvFile = path.join(this.serverless.config.servicePath, '.serverless/.env')
+    const dotEnvPath = this.options.path || path.join(this.serverless.config.servicePath, '.serverless')
+    const dotEnvFile = path.join(dotEnvPath, '.env')
     const dotEnvDocument = transformEnvVarsToString(this.environmentVariables)
 
     mkdirp.sync(dotEnvPath)

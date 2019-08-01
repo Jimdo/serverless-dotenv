@@ -45,7 +45,7 @@ describe('serverless dotenv plugin', () => {
     expectedEnvVars += 'TEST1_ENV_VAR=value123\r\n'
     expectedEnvVars += 'TEST2_ENV_VAR=value123\r\n'
 
-    pluginInstance = new ServerlessDotenvPlugin(serverless)
+    pluginInstance = new ServerlessDotenvPlugin(serverless, {})
   })
 
   describe('starting plugin', () => {
@@ -61,6 +61,16 @@ describe('serverless dotenv plugin', () => {
       pluginInstance.dotenvHandler()
 
       const dotEnvFile = path.join(serverless.config.servicePath, '.serverless/.env')
+      const dotEnvDocument = fs.readFileSync(dotEnvFile)
+
+      expect(dotEnvDocument.toString('ascii')).toEqual(expectedEnvVars)
+    })
+
+    it('should write .env file to a custom location', () => {
+      pluginInstance.options.path = 'tmp/custom/path'
+      pluginInstance.dotenvHandler()
+
+      const dotEnvFile = path.join('tmp/custom/path', '.env')
       const dotEnvDocument = fs.readFileSync(dotEnvFile)
 
       expect(dotEnvDocument.toString('ascii')).toEqual(expectedEnvVars)
