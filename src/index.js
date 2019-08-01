@@ -12,6 +12,8 @@ class ServerlessDotenvPlugin {
   constructor (serverless, options) {
     this.serverless = serverless
     this.options = options
+    this.custom = this.serverless.service.custom || {};
+    this.custom.dotenv = {};
 
     this.commands = {
       dotenv: {
@@ -62,7 +64,9 @@ class ServerlessDotenvPlugin {
     }
 
     // write .env file
-    const dotEnvPath = this.options.path || path.join(this.serverless.config.servicePath, '.serverless')
+    const dotEnvPath = this.options.path || this.custom.dotenv.path ||
+        path.join(this.serverless.config.servicePath, '.serverless')
+
     const dotEnvFile = path.join(dotEnvPath, '.env')
     const dotEnvDocument = transformEnvVarsToString(this.environmentVariables)
 

@@ -76,6 +76,16 @@ describe('serverless dotenv plugin', () => {
       expect(dotEnvDocument.toString('ascii')).toEqual(expectedEnvVars)
     })
 
+    it('should write .env file to a custom location set in serverless.yaml custom config', () => {
+      serverless.service.custom = {dotenv: 'tmp/custom/path'}
+      pluginInstance.dotenvHandler()
+
+      const dotEnvFile = path.join('tmp/custom/path', '.env')
+      const dotEnvDocument = fs.readFileSync(dotEnvFile)
+
+      expect(dotEnvDocument.toString('ascii')).toEqual(expectedEnvVars)
+    })
+
     it('should append offline variables when hooked', () => {
       serverless.pluginManager = {
         run: () => pluginInstance.dotenvHandler()
