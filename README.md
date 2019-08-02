@@ -1,9 +1,5 @@
 # ⚡️ Serverless-env-copy-plugin
 
-[![npm](https://img.shields.io/npm/v/@jimdo/serverless-dotenv.svg)](https://www.npmjs.com/package/@jimdo/serverless-dotenv)
-[![license](https://img.shields.io/github/license/jimdo/serverless-dotenv.svg)](https://github.com/jimdo/serverless-dotenv/blob/master/LICENSE)
-[![Coveralls](https://img.shields.io/coveralls/jimdo/serverless-dotenv.svg)](https://coveralls.io/github/jimdo/serverless-dotenv)
-
 ## About the plugin
 
 This serverless plugin generates a `.env` file based on the environment variables in the `serverless.yml`. The idea is to use this environment variables for further tasks like integration tests etc. It works great with `serverless offline`, so you can start serverless offline, the plugin will hook into the process and create the `.env` file. You will find the `.env` file in the `.serverless` folder of your project.
@@ -26,7 +22,7 @@ Add the plugin to your `serverless.yml`:
 
 ```yaml
 plugins:
-  - '@unly/serverless-dotenv'
+  - '@unly/serverless-env-copy-plugin'
 ```
 
 That's it! You can now type `serverless dotenv` in your terminal to generate the `.env` file based on your serverless configuration. Alternative you can just start `serverless offline` to generate it.
