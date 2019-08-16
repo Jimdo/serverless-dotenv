@@ -34,6 +34,9 @@ class ServerlessDotenvPlugin {
     this.hooks = {
       'before:offline:start:init': this.initOfflineHook.bind(this),
       'before:offline:start': this.initOfflineHook.bind(this),
+      'before:invoke:local:invoke': this.dotenvHandler.bind(this),
+      'before:package:function:package': this.dotenvHandler.bind(this),
+      'before:package:createDeploymentArtifacts': this.dotenvHandler.bind(this),
       'dotenv:dotenvHandler': this.dotenvHandler.bind(this)
     }
 
