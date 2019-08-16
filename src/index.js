@@ -13,7 +13,7 @@ class ServerlessDotenvPlugin {
     this.serverless = serverless
     this.options = options
     this.custom = this.serverless.service.custom || {};
-    this.custom.dotenv = {};
+    this.custom.dotenv = this.custom.dotenv || {};
 
     this.commands = {
       dotenv: {
