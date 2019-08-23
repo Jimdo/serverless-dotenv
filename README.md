@@ -1,3 +1,7 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/64a8a9858c497e6f6900/maintainability)](https://codeclimate.com/github/UnlyEd/serverless-env-copy-plugin/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/64a8a9858c497e6f6900/test_coverage)](https://codeclimate.com/github/UnlyEd/serverless-env-copy-plugin/test_coverage)
+[![AWS CodeBuild](https://codebuild.eu-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiQ0VXT2gwOEx4cXRhZ09aRzlKa0ZuN04vbGZSNyt0Sk9WZWk2bWlCRitEcmlQMTcrKzI5ZWpXUXpqQUxPd1hpZXM0UGRuTlNObzVTSlZ5MFRkbnFOc1RNPSIsIml2UGFyYW1ldGVyU3BlYyI6ImlXS01adG04bGdsYURWZW0iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)](https://eu-west-1.console.aws.amazon.com/codesuite/codebuild/projects/Serverless-env-copy-plugin)
+
 # ⚡️ Serverless-env-copy-plugin
 
 ## About the plugin

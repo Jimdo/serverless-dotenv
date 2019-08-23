@@ -1,12 +1,12 @@
 {
-  "name": "@jimdo/serverless-dotenv",
+  "name": "@unly/serverless-env-copy-plugin",
   "description": "serverless plugin to fetch environment variables and write it to a .env file",
   "main": "src/index.js",
   "author": "Henrik Fricke <henrik.fricke@jimdo.com>",
   "license": "MIT",
   "scripts": {
     "test": "$(npm bin)/jest test",
-    "test:cover": "$(npm bin)/jest test --coverage",
+    "test:coverage": "$(npm bin)/jest test --coverage",
     "lint": "$(npm bin)/standard | $(npm bin)/snazzy",
     "coveralls": "cat ./coverage/lcov.info | $(npm bin)/coveralls"
   },
