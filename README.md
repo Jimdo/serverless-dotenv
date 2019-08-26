@@ -31,6 +31,10 @@ plugins:
 
 That's it! You can now type `serverless dotenv` in your terminal to generate the `.env` file based on your serverless configuration. Alternative you can just start `serverless offline` to generate it.
 
+## Example
+
+You can check https://github.com/UnlyEd/boilerplates-generator/tree/master/templates/node-v10.x-aws-serverless to get an example of this plugin
+
 ## Contribution
 
 Feel free to contribute to this project! Our JavaScript is written based on [standardJS](https://standardjs.com). We recommend to use a `standardJS` [plugin](https://standardjs.com/index.html#are-there-text-editor-plugins) for your Editor, but you can also lint your code with `yarn run lint` - respectively `npm run lint`. Please don't forget to add unit and/or integration tests. Thanks <3
