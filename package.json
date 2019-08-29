@@ -18,7 +18,10 @@
     "access": "public"
   },
   "files": [
-    "/src"
+    "/src/index.js",
+    "/src/lib/collectFunctionEnvVariables.js",
+    "/src/lib/collectOfflineEnvVariables.js",
+    "/src/lib/transformEnvVarsToString.js"
   ],
   "scripts": {
     "lint": "esw src/ --fix --watch",
