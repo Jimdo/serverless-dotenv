@@ -1,10 +1,25 @@
 {
   "name": "@unly/serverless-env-copy-plugin",
   "version": "1.0.1",
-  "description": "serverless plugin to fetch environment variables and write it to a .env file",
+  "description": "Serverless plugin to fetch environment variables and write them to a .env file",
   "main": "src/index.js",
-  "author": "Henrik Fricke <henrik.fricke@jimdo.com>",
+  "author": "Unly <it@unly.org>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnlyEd/serverless-env-copy-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UnlyEd/serverless-env-copy-plugin/issues"
+  },
+  "homepage": "https://github.com/UnlyEd/serverless-env-copy-plugin",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "files": [
+    "/src"
+  ],
   "scripts": {
     "lint": "esw src/ --fix --watch",
     "lint:once": "eslint src/ --fix",
@@ -19,14 +34,6 @@
     "test:once": "NODE_ENV=test jest",
     "test:coverage": "NODE_ENV=test jest --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Jimdo/serverless-dotenv.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Jimdo/serverless-dotenv/issues"
-  },
-  "homepage": "https://github.com/Jimdo/serverless-dotenv",
   "jest": {
     "setupFilesAfterEnv": [
       "jest-extended"
