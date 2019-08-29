@@ -1,6 +1,5 @@
-'use strict';
 
-const collectOfflineEnvVariables = require('../../src/lib/collectOfflineEnvVariables.js');
+const collectOfflineEnvVariables = require('./collectOfflineEnvVariables.js');
 
 describe('collectOfflineEnvVariables', () => {
   let serverless;

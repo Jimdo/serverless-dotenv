@@ -3,7 +3,9 @@ version: 0.2
 env:
   # Please refer to https://github.com/UnlyEd/slack-codebuild
   variables:
+    SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/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"
     CODEBUILD_NOTIFY_ONLY_IF_FAIL: 1
+    CC_TEST_REPORTER_ID: f0d25bcb9b01e7c359d064a57c2e558ac7d07d78f2a93b573179d5e4cc1eb090
 
 phases:
   install:

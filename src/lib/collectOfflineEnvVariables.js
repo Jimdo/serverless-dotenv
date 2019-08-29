@@ -1,4 +1,3 @@
-'use strict';
 
 const util = require('util');
 
@@ -13,7 +12,7 @@ function collectOfflineEnvVariables(serverless, cliOptions) {
   };
 
   const serverlessConfigOptions = (serverless.service.custom || {})['serverless-offline'];
-  const options = Object.assign({}, defaultOptions, serverlessConfigOptions, cliOptions);
+  const options = { ...defaultOptions, ...serverlessConfigOptions, ...cliOptions };
 
   // Prefix must start and end with '/'
   if (!options.prefix.startsWith('/')) {
@@ -31,4 +30,4 @@ function collectOfflineEnvVariables(serverless, cliOptions) {
   };
 }
 
-module.exports = collectOfflineEnvVariables
+module.exports = collectOfflineEnvVariables;

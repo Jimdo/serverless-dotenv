@@ -4,6 +4,24 @@
 
 # ⚡️ Serverless-env-copy-plugin
 
+> This plugin [was forked](https://github.com/Jimdo/serverless-dotenv) because the original repo isn't maintained.
+> Also, the name of the plugin was changed, because the original name didn't make sense to us.
+
+<!-- toc -->
+
+- [About the plugin](#about-the-plugin)
+- [Usage](#usage)
+- [Example](#example)
+- [Contributing](#contributing)
+  * [Test](#test)
+  * [Versions](#versions)
+    + [SemVer](#semver)
+    + [Release a new version](#release-a-new-version)
+  * [Releasing and publishing](#releasing-and-publishing)
+- [License](#license)
+
+<!-- tocstop -->
+
 ## About the plugin
 
 This serverless plugin generates a `.env` file based on the environment variables in the `serverless.yml`. The idea is to use this environment variables for further tasks like integration tests etc. It works great with `serverless offline`, so you can start serverless offline, the plugin will hook into the process and create the `.env` file. You will find the `.env` file in the `.serverless` folder of your project.
@@ -35,6 +53,53 @@ That's it! You can now type `serverless dotenv` in your terminal to generate the
 
 You can check https://github.com/UnlyEd/boilerplates-generator/tree/master/templates/node-v10.x-aws-serverless to get an example of this plugin
 
-## Contribution
 
-Feel free to contribute to this project! Our JavaScript is written based on [standardJS](https://standardjs.com). We recommend to use a `standardJS` [plugin](https://standardjs.com/index.html#are-there-text-editor-plugins) for your Editor, but you can also lint your code with `yarn run lint` - respectively `npm run lint`. Please don't forget to add unit and/or integration tests. Thanks <3
+---
+
+## Contributing
+
+We gladly accept PRs, but please open an issue first so we can discuss it beforehand.
+
+### Test
+
+```
+yarn test # Run all tests, interactive and watch mode
+yarn test:once # Used for CI/CD
+yarn test:coverage # Generate coverage report
+```
+
+### Versions
+
+#### SemVer
+
+We use Semantic Versioning for this project: https://semver.org/. (`vMAJOR.MINOR.PATCH`: `v1.0.1`)
+
+- Major version: Must be changed when Breaking Changes are made (public API isn't backward compatible).
+  - A function has been renamed/removed from the public API
+  - Something has changed that will cause the app to behave differently with the same configuration
+- Minor version: Must be changed when a new feature is added or updated (without breaking change nor behavioral change)
+- Patch version: Must be changed when any change is made that isn't either Major nor Minor. (Misc, doc, etc.)
+
+#### Release a new version
+
+- `yarn run release`
+
+This command will prompt you for the version to update to, create a git tag, build the files and commit/push everything automatically.
+
+> Don't forget we are using SemVer, please follow our SemVer rules.
+
+**Pro hint**: use `beta` tag if you're in a work-in-progress (or unsure) to avoid releasing WIP versions that looks legit
+
+
+### Releasing and publishing
+
+```
+yarn releaseAndPublish # Shortcut - Will prompt for bump version, commit, create git tag, push commit/tag and publish to NPM
+
+yarn release # Will prompt for bump version, commit, create git tag, push commit/tag
+npm publish # Will publish to NPM
+```
+
+## License
+
+MIT

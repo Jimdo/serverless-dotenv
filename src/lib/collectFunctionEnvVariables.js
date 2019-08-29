@@ -1,13 +1,12 @@
-'use strict';
 
 function collectFunctionEnvVariables(serverless) {
   const functions = serverless.service.functions || {};
   let environmentVariables = {};
 
-  Object.keys(functions).forEach(func => {
-    const environment = functions[func].environment;
+  Object.keys(functions).forEach((func) => {
+    const { environment } = functions[func];
 
-    environmentVariables = Object.assign({}, environmentVariables, environment);
+    environmentVariables = { ...environmentVariables, ...environment };
   });
 
   return environmentVariables;

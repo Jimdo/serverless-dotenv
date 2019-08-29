@@ -1,6 +1,5 @@
-'use strict';
 
-const transformEnvVarsToString = require('../../src/lib/transformEnvVarsToString.js');
+const transformEnvVarsToString = require('./transformEnvVarsToString.js');
 
 describe('transformEnvVarsToString', () => {
   let environment;
@@ -8,8 +7,8 @@ describe('transformEnvVarsToString', () => {
 
   beforeAll(() => {
     environment = {
-      'TEST1_ABC': 'value123',
-      'TEST2_ABC': 'value321',
+      TEST1_ABC: 'value123',
+      TEST2_ABC: 'value321',
     };
 
     expectedString += 'TEST1_ABC=value123\r\n';

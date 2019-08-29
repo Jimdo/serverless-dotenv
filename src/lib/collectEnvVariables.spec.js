@@ -1,6 +1,5 @@
-'use strict';
 
-const collectFunctionEnvVariables = require('../../src/lib/collectFunctionEnvVariables.js');
+const collectFunctionEnvVariables = require('./collectFunctionEnvVariables.js');
 
 describe('collectFunctionEnvVariables', () => {
   let serverless;
@@ -12,12 +11,12 @@ describe('collectFunctionEnvVariables', () => {
         functions: {
           test1: {
             environment: {
-              'TEST1_ENV_VAR': 'value123',
+              TEST1_ENV_VAR: 'value123',
             },
           },
           test2: {
             environment: {
-              'TEST2_ENV_VAR': 'value123',
+              TEST2_ENV_VAR: 'value123',
             },
           },
           test3: {},
@@ -26,8 +25,8 @@ describe('collectFunctionEnvVariables', () => {
     };
 
     expectedEnvVars = {
-      'TEST1_ENV_VAR': 'value123',
-      'TEST2_ENV_VAR': 'value123',
+      TEST1_ENV_VAR: 'value123',
+      TEST2_ENV_VAR: 'value123',
     };
   });
 
