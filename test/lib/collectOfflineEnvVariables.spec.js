@@ -1,57 +1,56 @@
-'use strict'
+'use strict';
 
-const collectOfflineEnvVariables = require('../../src/lib/collectOfflineEnvVariables.js')
+const collectOfflineEnvVariables = require('../../src/lib/collectOfflineEnvVariables.js');
 
 describe('collectOfflineEnvVariables', () => {
-  let serverless
+  let serverless;
 
   beforeAll(() => {
     serverless = {
-      service: {
-      }
-    }
-  })
+      service: {},
+    };
+  });
 
   describe('default options', () => {
     it('should return environment variables for serverless offline', () => {
       const expectedEnvVars = {
         IS_OFFLINE: true,
-        API_ENDPOINT: 'http://localhost:3000/'
-      }
+        API_ENDPOINT: 'http://localhost:3000/',
+      };
 
-      expect(collectOfflineEnvVariables(serverless)).toEqual(expectedEnvVars)
-    })
-  })
+      expect(collectOfflineEnvVariables(serverless)).toEqual(expectedEnvVars);
+    });
+  });
 
   describe('https protocol', () => {
     it('should return api endpoint with https', () => {
       const expectedEnvVars = {
         IS_OFFLINE: true,
-        API_ENDPOINT: 'https://localhost:3000/'
-      }
+        API_ENDPOINT: 'https://localhost:3000/',
+      };
 
       const options = {
-        httpsProtocol: '/path/to/certificates'
-      }
+        httpsProtocol: '/path/to/certificates',
+      };
 
-      expect(collectOfflineEnvVariables(serverless, options)).toEqual(expectedEnvVars)
-    })
-  })
+      expect(collectOfflineEnvVariables(serverless, options)).toEqual(expectedEnvVars);
+    });
+  });
 
   describe('prefix', () => {
     it('should be part of the path in API_ENDPOINT', () => {
       const expectedEnvVars = {
         IS_OFFLINE: true,
-        API_ENDPOINT: 'http://localhost:3000/v1/'
-      }
+        API_ENDPOINT: 'http://localhost:3000/v1/',
+      };
 
       const options = {
-        prefix: 'v1'
-      }
+        prefix: 'v1',
+      };
 
-      expect(collectOfflineEnvVariables(serverless, options)).toEqual(expectedEnvVars)
-    })
-  })
+      expect(collectOfflineEnvVariables(serverless, options)).toEqual(expectedEnvVars);
+    });
+  });
 
   describe('serverless config yaml', () => {
     it('should override defaults', () => {
@@ -59,18 +58,18 @@ describe('collectOfflineEnvVariables', () => {
         service: {
           custom: {
             'serverless-offline': {
-              port: 3001
-            }
-          }
-        }
-      }
+              port: 3001,
+            },
+          },
+        },
+      };
 
       const expectedEnvVars = {
         IS_OFFLINE: true,
-        API_ENDPOINT: 'http://localhost:3001/'
-      }
+        API_ENDPOINT: 'http://localhost:3001/',
+      };
 
-      expect(collectOfflineEnvVariables(serverless)).toEqual(expectedEnvVars)
-    })
-  })
-})
+      expect(collectOfflineEnvVariables(serverless)).toEqual(expectedEnvVars);
+    });
+  });
+});
