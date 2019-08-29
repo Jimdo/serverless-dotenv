@@ -5,10 +5,8 @@
   "author": "Henrik Fricke <henrik.fricke@jimdo.com>",
   "license": "MIT",
   "scripts": {
-    "test": "$(npm bin)/jest test",
-    "test:coverage": "$(npm bin)/jest test --coverage",
-    "lint": "$(npm bin)/standard | $(npm bin)/snazzy",
-    "coveralls": "cat ./coverage/lcov.info | $(npm bin)/coveralls"
+    "test": "jest test",
+    "test:coverage": "jest test --coverage"
   },
   "repository": {
     "type": "git",
@@ -18,23 +16,18 @@
     "url": "https://github.com/Jimdo/serverless-dotenv/issues"
   },
   "homepage": "https://github.com/Jimdo/serverless-dotenv",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ],
+    "verbose": true
+  },
   "dependencies": {
     "coveralls": "^2.12.0",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "jest": "^19.0.2",
-    "snazzy": "^6.0.0",
-    "standard": "^9.0.2"
-  },
-  "standard": {
-    "envs": [
-      "node",
-      "jest"
-    ],
-    "ignore": [
-      "node_modules/",
-      "coverage"
-    ]
+    "jest": "24.9.0",
+    "jest-extended": "0.11.2"
   }
 }
