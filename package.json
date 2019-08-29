@@ -1,6 +1,6 @@
 {
   "name": "@unly/serverless-env-copy-plugin",
-  "version": "1.0.1-beta.0",
+  "version": "1.0.1",
   "description": "serverless plugin to fetch environment variables and write it to a .env file",
   "main": "src/index.js",
   "author": "Henrik Fricke <henrik.fricke@jimdo.com>",
