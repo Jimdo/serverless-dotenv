@@ -8,7 +8,7 @@
 
 This serverless plugin generates a `.env` file based on the environment variables in the `serverless.yml`. The idea is to use this environment variables for further tasks like integration tests etc. It works great with `serverless offline`, so you can start serverless offline, the plugin will hook into the process and create the `.env` file. You will find the `.env` file in the `.serverless` folder of your project.
 
-It will collect the global environment variables of the poject as well as all environment variables of the functions. It will also add `API_ENDPOINT` and `IS_OFFLINE` to your environment if you run the plugin via `serverless offline`.
+It will collect the global environment variables of the project as well as all environment variables of the functions. It will also add `API_ENDPOINT` and `IS_OFFLINE` to your environment if you run the plugin via `serverless offline`.
 
 ## Usage
 
