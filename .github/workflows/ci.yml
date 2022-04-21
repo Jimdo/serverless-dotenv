@@ -9,21 +9,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install node
-        uses: actions/setup-node@v2
+      - name: Setup dependencies and run tests
+        uses: ./.github/actions/setup-dependencies
         with:
-          version: '10'
-
-      - name: Install yarn
-        run: npm install -g yarn
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Run tests
-        run: yarn test:cover
-
-      - name: Run coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
