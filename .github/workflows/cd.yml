@@ -1,9 +1,10 @@
 name: Publish
 
-on:
-  push:
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+on: pull_request
+#on:
+#  push:
+#    tags:
+#      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   publish:
@@ -17,6 +18,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup dependencies and run tests
+        uses: ./.github/actions/setup-dependencies
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Fetch npm token
         id: secrets
         uses: hashicorp/vault-action@v2.4.0
@@ -27,11 +33,6 @@ jobs:
           exportEnv: false
           secrets: |
             secret/creator/npm-publish-token NPM_TOKEN | NPM_PUBLISH_TOKEN;
-
-      - name: Setup dependencies and run tests
-        uses: ./.github/actions/setup-dependencies
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get latest tag
         id: latest_tag
