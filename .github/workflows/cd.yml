@@ -28,8 +28,8 @@ jobs:
         uses: hashicorp/vault-action@v2.4.0
         with:
           url: https://vault.jimdo-platform.net
-          method: github
-          githubToken: ${{ secrets.VAULT_ACTION_GITHUB_TOKEN }}
+          method: jwt
+          role: github_jimdo
           exportEnv: false
           secrets: |
             secret/creator/npm-publish-token NPM_TOKEN | NPM_PUBLISH_TOKEN;
